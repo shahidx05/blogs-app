@@ -1,12 +1,11 @@
 require('dotenv').config()
 const User = require('../models/userModel')
 const bcrypt = require('bcrypt')
-const { json } = require('express')
 const jwt = require('jsonwebtoken')
 
 exports.register = async (req, res) => {
     try {
-        const { name, email, password } = req.body
+        const { username, name, email, password } = req.body
 
         const user = await User.findOne({ email })
 
@@ -15,6 +14,7 @@ exports.register = async (req, res) => {
         const hash = await bcrypt.hash(password, 12)
 
         const newUser = await User.create({
+            username,
             name,
             email,
             password: hash
@@ -26,6 +26,7 @@ exports.register = async (req, res) => {
             message: "User registered successfully",
             user: {
                 _id: newUser._id,
+                username: newUser.username,
                 name: newUser.name,
                 email: newUser.email,
             },
@@ -53,6 +54,7 @@ exports.login = async (req, res) => {
             message: "Login successful",
             user: {
                 _id: user._id,
+                username: user.username,
                 name: user.name,
                 email: user.email,
             },
