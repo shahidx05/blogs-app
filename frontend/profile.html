@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+ <nav style="display: flex; justify-content: space-around;">
+        <div><a href="./index.html">All Posts</a></div>
+        <div><a href="./profile.html">Profile</a></div>
+        <div><a href="./register.html">Register</a></div>
+        <div><a href="#" id="logout">Log Out</a></div>
+    </nav>
+
+<body>
+    <div class="head">
+        <h1 class="h1">Welcome, <%=user.name%> 👋</h1>
+        <!-- <a href="/logout">Log Out</a> -->
+    </div>
+
+    <p>Here you can manage your posts.</p>
+
+    <div class="form">
+        <h3>Create a New Post</h3>
+        <form>
+            <textarea placeholder="Write Somethig here... " name="content" id="textarea"></textarea>
+            <button type="submit" id="Create">Create new post</button>
+        </form>
+    </div>
+
+    <h2>Your posts</h2>
+
+    <p class="emptymsg">No Posts Yet!</p>
+
+    <div class="postcontainer">
+        <!-- <div style="border: 2px solid;" class="post">
+            <h3>username</h3>
+            <p>
+                <%=post.content%>
+            </p>
+            <div class="btns">
+                <a class="delete" href="/post/delete/<%= post._id %>">Delete</a>
+                <a class="edit" href="/post/edit/<%= post._id %>">Edit</a>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="module" src="js/profile.js"></script>
+
+</body>
+
+</html>

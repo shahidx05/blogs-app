@@ -10,10 +10,19 @@ exports.posts = async (req, res) => {
     }
 }
 
+exports.post = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id).populate('user', 'name username');
+        res.status(200).json(post)
+    } catch (error) {
+        res.status(500).json({ error: "Server error", details: error.message });
+    }
+}
+
 exports.userPosts = async (req, res) => {
     try {
        const posts = await Post.find({ user: req.user.id }).sort({ createdAt: -1 })
-        res.status(200).json({ success: true, data: posts })
+        res.status(200).json({ posts })
     } catch (error) {
         res.status(500).json({ error: "Server error", details: error.message });
     }
@@ -30,6 +39,7 @@ exports.create = async (req, res) => {
         res.status(500).json({ error: "Server error", details: error.message });
     }
 }
+
 exports.delete = async (req, res) => {
     try {
         const { id } = req.params
@@ -46,6 +56,7 @@ exports.delete = async (req, res) => {
         res.status(500).json({ error: "Server error", details: error.message });
     }
 }
+
 exports.edit = async (req, res) => {
     try {
         const { id } = req.params
@@ -60,6 +71,27 @@ exports.edit = async (req, res) => {
             { new: true }
         );
         res.status(200).json(newPost)
+
+    } catch (error) {
+        res.status(500).json({ error: "Server error", details: error.message });
+    }
+}
+
+exports.like = async (req, res) => {
+    try {
+        const { id } = req.params
+        const post = await Post.findById(id)
+        const user = req.user.id
+
+        if(post.likes.includes(user)){
+            post.likes.pull(user)
+        }
+        else{
+            post.likes.push(user)
+        }
+
+        await post.save();
+        res.status(200).json({ likes: post.likes.length });
 
     } catch (error) {
         res.status(500).json({ error: "Server error", details: error.message });
