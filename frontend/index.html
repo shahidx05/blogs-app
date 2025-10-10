@@ -6,20 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Posts</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-    <nav style="display: flex; justify-content: space-around;">
-        <div><a href="./index.html">All Posts</a></div>
-        <div><a href="./profile.html">Profile</a></div>
-        <div><a href="./register.html">Register</a></div>
-        <div><a href="#" id="logout">Log Out</a></div>
-    </nav>
-    <h2>All posts</h2>
+    <header>
+        <nav>
+            <h1>Blogs App</h1>
 
-    <div class="postcontainer">
-       
-    </div>
+            <div class="nav-links">
+                <div><a href="./index.html">Home</a></div>
+                <div><a href="./profile.html">Profile</a></div>
+                <div><a href="./create.html">Create Post</a></div>
+                <div><a href="#" id="logout">Log Out</a></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h2 class="All-posts-title">Recent Posts</i></h2>
+        <div class="postcontainer"></div>
+    </main>
 
     <script type="module" src="js/home.js"></script>
 

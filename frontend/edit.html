@@ -9,12 +9,27 @@
 </head>
 
 <body>
-  <h1 class="h1">Edit Post</h1>
+  <header>
+    <nav>
+      <h1>Blogs App</h1>
 
-  <div class="form">
-    <form >
-      <textarea placeholder="Write Somethig here... " name="content" id="textarea" required></textarea>
-      <button type="submit" id="Create">Update</button>
+      <div class="nav-links">
+        <div><a href="./index.html">Home</a></div>
+        <div><a href="./profile.html">Profile</a></div>
+        <div><a href="./create.html">Create Post</a></div>
+        <div><a href="#" id="logout">Log Out</a></div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="form-card">
+    <h1>Edit Post</h1>
+    <form>
+      <div>
+        <label for="content">Content:</label>
+        <textarea placeholder="Write Somethig here... " name="content" id="textarea" required></textarea>
+      </div>
+      <button type="submit" class="edit-btn" id="Create">Update Post</button>
     </form>
   </div>
 

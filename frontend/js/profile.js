@@ -1,8 +1,6 @@
-import { profile, getmyposts, createpost, deletepost } from "./api.js";
-const h1 = document.querySelector('.h1')
+import { profile, getmyposts, deletepost } from "./api.js";
+const h1 = document.querySelector('.name-heading')
 const postcontainer = document.querySelector('.postcontainer')
-const textarea = document.querySelector('#textarea')
-const createbtn = document.querySelector('#Create')
 const emptymsg = document.querySelector('.emptymsg')
 const logoutbtn = document.querySelector('#logout')
 
@@ -17,42 +15,38 @@ async function renderProfile() {
     const user = await profile()
     const posts = await getmyposts()
 
-    h1.textContent = `Welcome ${user.username} 👋`
+    h1.textContent = `Welcome, ${user.username} 👋`
 
-    emptymsg.style.display = posts.posts.length===0 ? "block" : "none" 
+    emptymsg.style.display = posts.posts.length === 0 ? "block" : "none"
 
 
     postcontainer.innerHTML = posts.posts.map(post => `
-    <div style="border: 2px solid;" class="post">
+    <div class="post">
+        <div class="post-head" >
             <h3>@${user.username}</h3>
-            <p>${post.content}</p>
-            <p>Likes ${post.likes.length}</p>
+            <p class="date" > Created on: ${new Date(post.createdAt).toLocaleString()}</p>
+        </div>
+        <p class="content" >${post.content}</p>
+        <div class="post-foot">
+            <p class="like" ><i class="fa-solid fa-thumbs-up like-btn" data-id="${post._id}"></i>${post.likes.length} Likes</p>
             <div class="btns">
                 <a data-id="${post._id}" class="delete" href="#">Delete</a>
                 <a class="edit" href="edit.html?id=${post._id}">Edit</a>
             </div>
         </div>
-  `).join(''); 
+    </div>
+  `).join('');
 
-  document.querySelectorAll('.delete').forEach(btn=>{
-    btn.addEventListener('click', async()=>{
-        await deletepost(btn.dataset.id)
-        renderProfile()
+    document.querySelectorAll('.delete').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            await deletepost(btn.dataset.id)
+            renderProfile()
+        })
     })
-  })
 
 }
 
-createbtn.addEventListener('click', async(e)=>{
-    e.preventDefault()
-    const content = textarea.value.trim()
-    await createpost(content)
-    textarea.value = ''
-    renderProfile()
-})
-
-
-logoutbtn.addEventListener('click', (e)=>{
+logoutbtn.addEventListener('click', (e) => {
     e.preventDefault()
     localStorage.removeItem('token');
     window.location.href = 'login.html';

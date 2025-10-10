@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Create Post</title>
     <link rel="stylesheet" href="./css/style.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -22,23 +21,19 @@
             </div>
         </nav>
     </header>
-    <main>
-        
-        <h2 class="name-heading">Welcome, <%=user.name%> </h2>
 
-        <p style="margin: 0 0.8rem;">Here you can manage your posts.</p>
+    <div class="form-card">
+        <h1>Create a New Post</h1>
+        <form>
+            <div>
+                <label for="content">Content:</label>
+                <textarea placeholder="Write Somethig here... " name="content" id="textarea" required></textarea>
+            </div>
+            <button type="submit" class="create-btn" id="Create">Create Post</button>
+        </form>
+    </div>
 
-        <h2 class="your-posts-title" >Your posts</h2>
-
-        <p class="emptymsg">No Posts Yet!</p>
-
-        <div class="postcontainer"></div>
-
-    </main>
-
-
-    <script type="module" src="js/profile.js"></script>
-
+    <script type="module" src="js/create.js"></script>
 </body>
 
 </html>

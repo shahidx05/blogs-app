@@ -3,32 +3,32 @@ const postcontainer = document.querySelector('.postcontainer')
 const logoutbtn = document.querySelector('#logout')
 
 async function renderPosts() {
-    const posts = await getAllposts()
+  const posts = await getAllposts()
 
-    postcontainer.innerHTML = posts.map(post => `
-    <div style="border: 2px solid;" class="post">
+  postcontainer.innerHTML = posts.map(post => `
+    <div class="post">
+          <div class="post-head" >
             <h3>@${post.user.username}</h3>
-            <p>${post.content}</p>
-            <button type="button" data-id="${post._id}" class="like">Like</button>
-            <p>${post.likes.length}</p>
-            <p> Created on: ${new Date(post.createdAt).toLocaleString()}</p>
+            <p class="date" > Created on: ${new Date(post.createdAt).toLocaleString()}</p>
+          </div>
+            <p class="content" >${post.content}</p>
+            <p class="like" ><i class="fa-solid fa-thumbs-up like-btn" data-id="${post._id}"></i>${post.likes.length} Likes</p>
         </div>
   `).join('');
-  
-  document.querySelectorAll('.like').forEach(btn=>{
-    btn.addEventListener('click', async(e)=>{
-        e.preventDefault()
-        const res = await likepost(btn.dataset.id)
-        console.log(res);
-        renderPosts()
+
+  document.querySelectorAll('.like-btn').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault()
+      const res = await likepost(btn.dataset.id)
+      renderPosts()
     })
   })
 
 }
-logoutbtn.addEventListener('click', (e)=>{
-    e.preventDefault()
-    localStorage.removeItem('token');
-    window.location.href = 'login.html';
+logoutbtn.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.removeItem('token');
+  window.location.href = 'login.html';
 })
 
 renderPosts()
