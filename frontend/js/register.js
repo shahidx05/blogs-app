@@ -26,6 +26,7 @@ form.addEventListener('submit', async (e) => {
 
     if (result.token) {
         localStorage.setItem('token', result.token);
+        localStorage.setItem('userId', result.user._id);
     }
     window.location.href = "profile.html";
 });

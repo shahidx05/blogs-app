@@ -1,139 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #007BFF;
+    --primary-hover: #0056b3; 
+    --accent-color: #28a745; 
+    --text-primary: #212529;  
+    --text-secondary: #6c757d;
+    --bg-color: #f8f9fa;     
+    --surface-color: #ffffff; 
+    --border-color: #dee2e6;
+    --danger-color: #dc3545;
+    --danger-hover: #c82333;
+
+    --font-family: 'Inter', sans-serif;
+    --border-radius: 8px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.07);
+    --transition: all 0.2s ease-in-out;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    font-family: 'Inter', sans-serif;
-    background-color: #f9fafb;
-    color: #111827;
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
     line-height: 1.6;
 }
 
-header{
-    background-color: white;
-    margin-bottom: 30px;
-    padding: 2rem;
+header {
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--border-color);
 }
 
 nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    margin-bottom: 1.6rem;
     margin: 0 auto;
-    max-width: 900px;
+    /* max-width: 900px; */
+    max-width: 1100px;
 }
 
 nav h1{
     font-size: 1.6rem;
-    color: #4f46e5;
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .nav-links{
     display: flex;
-    gap: 1.2rem;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .nav-links a{
     text-decoration: none;
     font-size: 1.2rem;
-    font-weight: 400;
-    color: #64748b;
-}
-.nav-links a:visited{
-    color: #64748b;
+    /* font-size: 1rem; */
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
 }
 .nav-links a:hover{
-    color: #4338ca;;
+    color: var(--primary-color);
 }
 
+.nav-links a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+    /* font-weight: 600; */
+    border-bottom-color: var(--primary-color);
+}
+
+#logout{
+    background-color: rgb(228, 39, 39);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: var(--transition);
+}
+#logout:hover {
+    background-color: var(--danger-hover);
+    transform: translateY(-2px);
+}
+
+
 main{
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 800px;
+    /* max-width: 900px; */
+    margin: 2.5rem auto;
+    padding: 0 1rem;
 }
 
 .All-posts-title{
-    font-size: 2.5rem;
-    margin: 2rem 0.8rem;
-    font-weight: 500;
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 
 .postcontainer{
-    padding: 0.8rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
 .postcontainer .post{
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
     padding: 1rem;
+    /* padding: 1.5rem; */
+    transition: var(--transition);
 }
 
+/* .post:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #ced4da;
+    transform: translateY(-4px);
+} */
 
 .post-head{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.postcontainer .post .date{
-    font-size: 0.9rem;
-    color: #64748b;
+    margin-bottom: 1.25rem;
 }
 
 .post-head h3{
-    color: rgb(21, 59, 227);
+    color: var(--primary-color);
     font-size: 1.5rem;
-    font-weight: 500;
+    /* font-size: 1.2rem; */
+    font-weight: 600;
 }
 
-.postcontainer .post .content{
-    font-size: 1.2rem;
-    margin: 4px 0;
+.post .date{
+    font-size: 0.875rem;
+    color: var(--text-secondary);
 }
 
-.like{
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: rgb(0, 43, 160);
-}
-.like i{
-    font-size: 1.6rem;
-    color: #64748b;
-}
-.like i .active{
-    font-size: 1.65rem;
-    color: #056dfe;
-}
-
-.name-heading{
-    font-size: 2.2rem;
-    margin: 0 0.8rem;
-    margin-top: 1.8rem;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.your-posts-title{
-    font-weight: 500;
-    margin: 0.5rem 0.8rem;
-
+.post .content{
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
 }
 
 .post-foot{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.like{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+.like i {
+  font-size: 1.5rem;
+  /* font-size: 1.25rem; */
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+.like i:hover {
+transform: scale(1.2);
+}
+
+.like i.active {
+color: var(--primary-color);
+  transform: scale(1.1);
 }
 
 .post-foot .btns{
@@ -142,24 +203,116 @@ main{
 }
 .post-foot .btns a{
     text-decoration: none;
+    font-weight: 600; 
+    transition: var(--transition);
     /* padding: 0.5rem 1rem; */
     /* background-color: #f9fafb; */
-    border-radius: 10px;
+    /* border-radius: 10px; */
     /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1); */
 }
 
-.post-foot .btns .delete{
-    color: red;
+.post-foot .btns .delete{ color: red;}
+.post-foot .btns .edit {color: rgb(32, 149, 9);}
+
+.post-foot .btns .delete:hover { color: var(--danger-hover); }
+.post-foot .btns .edit:hover { color: #1e7e34; }
+
+.profile-card{
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2.5rem;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 1rem;
 }
-.post-foot .btns .edit{
-    color: rgb(32, 149, 9);
+
+.profile-info {
+    text-align: left;
+}
+
+.name-heading{
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.profile-card .username {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 1.2rem;
+}
+
+.profile-card .email {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+
+.profile-actions {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.profile-actions p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+.create-btn{
+    display: inline-block;
+    text-decoration: none;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.create-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.your-posts-title{
+    /* font-weight: 500;
+    margin: 0.5rem 0.8rem; */
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .emptymsg{
-    color: red;
+    /* color: red;
     text-align: center;
     margin: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.5rem; */
+    color: var(--text-secondary);
+    text-align: center;
+    margin: 3rem 0;
+    font-size: 1.2rem;
+    font-style: italic;
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px dashed var(--border-color);
 }
 
 .form-card {
@@ -292,14 +445,4 @@ main{
 .form-footer a {
     text-decoration: none;
     color: #1f16b8;
-}
-
-
-#logout{
-    background-color: rgb(228, 39, 39);
-    color: white;
-    padding: 10px 12px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
 }
