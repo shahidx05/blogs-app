@@ -1,5 +1,5 @@
 const LOCAL_BACKEND_URL = 'http://localhost:3000/api';
-const LIVE_BACKEND_URL = 'https://blogs-app-backend-w58h.onrender.com/'
+const LIVE_BACKEND_URL = 'https://blogs-app-backend-w58h.onrender.com'
 
 const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
 
