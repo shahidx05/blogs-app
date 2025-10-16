@@ -5,6 +5,9 @@ const logoutbtn = document.querySelector('#logout')
 const CONTENT_LIMIT = 250;
 
 async function renderPosts() {
+  postcontainer.innerHTML = `    <div class="spinner-container">
+        <div class="spinner"></div>
+    </div>`
   const posts = await getAllposts()
   const currentUserId = localStorage.getItem('userId');
 

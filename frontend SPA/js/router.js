@@ -13,14 +13,28 @@ const routes = {
     "/home": Home,
     "/profile": Profile,
     "/create": Create,
-    "/edit": Edit,
     "/login": Login,
     "/register": Register,
 }
 
+const spinnerHTML = `
+    <div class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+`;
+
+
 export const router = async () => {
+    updateNavigation();
+    appRoot.innerHTML = spinnerHTML;
     const path = window.location.hash.slice(1) || "/";
-    const component = routes[path];
+    let component
+
+    if (path.startsWith('/edit/')) {
+        component = Edit;
+    } else {
+        component = routes[path];
+    }
     if (component) {
         appRoot.innerHTML = await component.render();
         if (component.addEventListeners) {
@@ -29,7 +43,6 @@ export const router = async () => {
     } else {
         appRoot.innerHTML = `<h1>404 - Page Not Found</h1>`;
     }
-    updateNavigation();
 } 
 
 const updateNavigation = () => {
@@ -51,6 +64,16 @@ const updateNavigation = () => {
     }
 
     navLinks.innerHTML = navHTML;
+
+    const currentPath = window.location.hash || '#/';
+    const allLinks = navLinks.querySelectorAll('a');
+    allLinks.forEach(link => {
+        if (link.hash === currentPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
 
     const logoutBtn = document.getElementById('logout');
     if (logoutBtn) {

@@ -40,8 +40,6 @@ const Login = {
         
           const result = await api.login(email,password);
         
-          console.log(result);
-        
             if (result.token) {
                 localStorage.setItem('token', result.token);
                 localStorage.setItem('userId', result.user._id);
@@ -50,6 +48,8 @@ const Login = {
             }
             else {
                 alert(result.message || 'Login failed. Please try again.');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Login';
             }
         });
         

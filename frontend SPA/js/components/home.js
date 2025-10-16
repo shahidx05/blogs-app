@@ -39,10 +39,16 @@ const createPostHTML = (post, currentUserId) => {
 
 const Home = {
     render: async () => {
+        if (!localStorage.getItem('token')) {
+            window.location.hash = '#/login';
+            router();
+            return ''; 
+        }
+
         const posts = await api.getAllposts();
         const currentUserId = localStorage.getItem('userId');
         return `
-            <h2 class="All-posts-title">Recent Posts</h2>
+            <h2 class="All-posts-title">Recent Posts<p class="page-subtitle">Welcome to the community blog!</p></h2>
             <div class="postcontainer">
                 ${posts.length === 0
                 ? `<p class="emptymsg">No posts yet. Why not create one?</p>`

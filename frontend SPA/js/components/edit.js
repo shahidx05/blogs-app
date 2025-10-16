@@ -1,90 +1,55 @@
 import * as api from '../api.js';
 import { router } from '../router.js';
 
-const CONTENT_LIMIT = 250;
-
-const createPostHTML = (post, currentUserId) => {
-    const isLiked = post.likes.includes(currentUserId);
-    let contentHTML = ''
-
-    if (post.content.length > CONTENT_LIMIT) {
-        const truncatedContent = post.content.substring(0, CONTENT_LIMIT) + '...'
-        contentHTML = `
-        <p class="content" data-full-content="${escape(post.content)}">
-            ${truncatedContent}
-            <a href="#" class="see-more-btn" data-post-id="${post._id}">See More</a>
-        </p>
-      `
-    }
-    else {
-        contentHTML = `<p class="content">${post.content}</p>`;
-    }
-
-    return `
-    <div class="post">
-          <div class="post-head" >
-            <h3>@${post.user.username}</h3>
-            <p class="date" > Created on: ${new Date(post.createdAt).toLocaleString()}</p>
-          </div>
-          ${contentHTML} 
-            <div class="post-foot">
-                <div class="like">
-                    <i class="fa-solid fa-thumbs-up like-btn ${isLiked ? 'active' : ''}" data-id="${post._id}"></i>
-                    <span class="like-count">${post.likes.length} Likes</span>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-const Home = {
+const Edit = {
     render: async () => {
-        const posts = await api.getAllposts();
-        const currentUserId = localStorage.getItem('userId');
+        if (!localStorage.getItem('token')) {
+            window.location.hash = '#/login';
+            router();
+            return '';
+        }
+        const pathParts = window.location.hash.split('/');
+        const postId = pathParts[2];
+        if (!postId) {
+            return `<h1 class="All-posts-title">Error</h1><p class="emptymsg">No post ID provided.</p>`;
+        }
+        const post = await api.post(postId);
         return `
-            <h2 class="All-posts-title">Recent Posts</h2>
-            <div class="postcontainer">
-                ${posts.length === 0
-                ? `<p class="emptymsg">No posts yet. Why not create one?</p>`
-                : posts.map(post => createPostHTML(post, currentUserId)).join('')
-            }
-            </div>
+        <div class="form-card">
+            <h1>Edit Post</h1>
+            <form>
+                <div>
+                    <label for="content">Content:</label>
+                    <textarea placeholder="Write Somethig here... " name="content" id="textarea" required>${post.content}</textarea>
+                </div>
+                <button type="submit" class="edit-btn" id="Create">Update Post</button>
+            </form>
+        </div>
         `;
     },
     addEventListeners: () => {
-        const postContainer = document.querySelector('.postcontainer');
-        if (!postContainer) return;
+        const createbtn = document.querySelector('#Create')
 
-        postContainer.addEventListener('click', async (e) => {
-            const target = e.target;
+        createbtn.addEventListener('click', async (e) => {
             e.preventDefault();
 
-            if (target.classList.contains('like-btn')) {
-                await api.likepost(target.dataset.id);
-                router();
-            }
+            const textarea = document.querySelector('#textarea').value.trim();
+            const pathParts = window.location.hash.split('/');
+            const postId = pathParts[2];
 
-            if (target.classList.contains('see-more-btn')) {
-                const contentP = target.parentElement;
-                const fullContent = unescape(contentP.dataset.fullContent);
-                contentP.innerHTML = `
-                    ${fullContent}
-                    <a href="#" class="see-less-btn">See Less</a>
-                `;
-            }
+            if (!textarea || !postId) return;
 
-            if (target.classList.contains('see-less-btn')) {
-                const contentP = target.parentElement;
-                const fullContent = unescape(contentP.dataset.fullContent);
-                const truncatedContent = fullContent.substring(0, CONTENT_LIMIT) + '...';
-                contentP.innerHTML = `
-                    ${truncatedContent}
-                    <a href="#" class="see-more-btn">See More</a>
-                `;
-            }
+            createbtn.disabled = true;
+            createbtn.textContent = 'Updating Post...';
+
+            await api.editpost(postId, textarea);
+
+            createbtn.disabled = false;
+            createbtn.textContent = 'Update Post';
+            window.location.hash = '#/profile';
+            router();
         });
     }
 }
 
-export default Home;
-
+export default Edit;

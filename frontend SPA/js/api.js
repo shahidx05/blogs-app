@@ -1,4 +1,10 @@
-const BASE_URL = 'http://localhost:3000/api';
+const LOCAL_BACKEND_URL = 'http://localhost:3000/api';
+const LIVE_BACKEND_URL = 'https://blogs-app-backend-w58h.onrender.com/'
+
+const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+
+const BASE_URL = isLocal ? LOCAL_BACKEND_URL : LIVE_BACKEND_URL;
+
 
 export const register = async (name, username, email, password) => {
   const res = await fetch(`${BASE_URL}/users/register`, {

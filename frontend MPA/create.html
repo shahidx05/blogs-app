@@ -21,17 +21,19 @@
             </div>
         </nav>
     </header>
+    <main>
+        <div class="form-card">
+            <h1>Create a New Post</h1>
+            <form>
+                <div>
+                    <label for="content">Content:</label>
+                    <textarea placeholder="Write Somethig here... " name="content" id="textarea" required></textarea>
+                </div>
+                <button type="submit" class="create-btn" id="Create">Create Post</button>
+            </form>
+        </div>
+    </main>
 
-    <div class="form-card">
-        <h1>Create a New Post</h1>
-        <form>
-            <div>
-                <label for="content">Content:</label>
-                <textarea placeholder="Write Somethig here... " name="content" id="textarea" required></textarea>
-            </div>
-            <button type="submit" class="create-btn" id="Create">Create Post</button>
-        </form>
-    </div>
     <script src="js/nav.js"></script>
     <script type="module" src="js/create.js"></script>
 </body>

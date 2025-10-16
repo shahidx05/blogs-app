@@ -60,6 +60,8 @@ const Register = {
             }
             else {
                 alert(result.message || 'Registration failed. Please try again.');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Login';
             }
         });
         
@@ -67,4 +69,3 @@ const Register = {
 }
 
 export default Register;
-

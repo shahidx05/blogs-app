@@ -116,6 +116,13 @@ main{
     border-bottom: 1px solid var(--border-color);
 }
 
+.All-posts-title p{
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin: 0.2rem 0;
+}
+
 
 .postcontainer{
     display: flex;
@@ -468,6 +475,29 @@ color: var(--primary-color);
     font-weight: 600;
 }
 
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh; 
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--border-color); 
+    border-top-color: var(--primary-color); 
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
 @media (max-width: 768px) {
     header {
         padding: 1rem;
@@ -500,3 +530,5 @@ color: var(--primary-color);
         margin-top: 1rem;
     }
 }
+
+
