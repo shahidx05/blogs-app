@@ -1,3 +1,4 @@
+
 import * as api from '../api.js';
 import { router } from '../router.js';
 
@@ -63,9 +64,9 @@ const Home = {
 
         postContainer.addEventListener('click', async (e) => {
             const target = e.target;
+            e.preventDefault();
             
             if (target.classList.contains('like-btn')) {
-                e.preventDefault();
 
                 const token = localStorage.getItem('token');
                 if (!token) {
@@ -116,4 +117,3 @@ const Home = {
 }
 
 export default Home;
-
