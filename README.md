@@ -8,7 +8,7 @@
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live Demo & API
 
 **Click the image below to experience the live Single Page Application:**
 
@@ -16,17 +16,20 @@
   <img src="frontend%20MPA/images/home.png" alt="Project Home Page Preview" width="100%">
 </a>
 
-**Or visit the direct link:**
+**Frontend SPA Live Link:**
 ### [https://blogs-app-shahidx05.vercel.app/](https://blogs-app-shahidx05.vercel.app/)
+
+**Backend API Base URL (Deployed on Render):**
+### [https://blogs-app-backend-w58h.onrender.com/api](https://blogs-app-backend-w58h.onrender.com/api)
 
 ---
 
 ## ✨ About This Project
 
-This repository showcases the evolution of a full-stack project. It begins with a secure Node.js backend and includes two frontend implementations:
+This repository showcases the evolution of a full-stack project. It starts with a secure Node.js backend and includes two distinct frontends:
 
-1.  **Multi-Page Application (MPA):** The original frontend, built with separate HTML files for each page (`index.html`, `profile.html`, etc.). This version demonstrates a classic and robust approach to web development.
-2.  **Single Page Application (SPA):** The modern, deployed version. It provides a seamless and fluid user experience with no page reloads, all powered by a custom-built vanilla JavaScript router.
+1.  **Multi-Page Application (MPA):** The original frontend, built with separate HTML files for each page. This version demonstrates a classic and robust approach to web development.
+2.  **Single Page Application (SPA):** The modern, deployed version. It provides a seamless and fluid user experience without page reloads, powered by a custom-built vanilla JavaScript router.
 
 ---
 
@@ -40,7 +43,7 @@ This repository showcases the evolution of a full-stack project. It begins with 
 -   ✅ **Like/Unlike System**: A dedicated endpoint to toggle a "like" on any post.
 
 ### Frontend (Single Page Application)
--   ✅ **Seamless SPA Navigation**: A custom hash-based router provides instant page transitions with **no full-page reloads**.
+-   ✅ **Seamless SPA Navigation**: A custom hash-based router provides instant page transitions without full-page reloads.
 -   ✅ **User Dashboard**: A dedicated profile page showing user details and a list of their own posts.
 -   ✅ **Full Post Management**: Users can create, edit, and delete their own posts from the UI.
 -   ✅ **Interactive Actions**: Like or unlike any post with instant UI feedback without leaving the page.
@@ -65,7 +68,28 @@ This repository showcases the evolution of a full-stack project. It begins with 
 
 ---
 
+## 🧠 Concepts Practiced
+
+-   RESTful API Design
+-   JWT Authentication & Authorization
+-   Password Hashing (bcrypt)
+-   Environment Variables (.env)
+-   Database Modeling (Mongoose Schemas)
+-   Frontend Routing (Vanilla JS Hash-based Router)
+-   SPA vs MPA Architecture
+-   Asynchronous JavaScript (async/await, Fetch API)
+-   DOM Manipulation
+-   Event Handling & Delegation
+-   Local Storage for Token Management
+-   Responsive Web Design
+-   CORS Configuration
+-   Deployment (Backend on Render, Frontend on Vercel)
+
+---
+
 ## 📸 Project Preview
+
+**Note:** Update image paths if necessary for correct display on GitHub.
 
 | Profile Page / Dashboard | All Posts (Home) |
 | :---: | :---: |
@@ -73,18 +97,25 @@ This repository showcases the evolution of a full-stack project. It begins with 
 | **Login Page** | **Edit Post Page** |
 | ![Login Page Screenshot](frontend%20MPA/images/login.png) | ![Edit/Create Post Screenshot](frontend%20MPA/images/create.png) |
 
+---
+
+## 📁 Repository Structure
+```
+blogs-app/ 
+├── backend/ # REST API built with Node.js and Express 
+├── frontend MPA/ # Classic Multi-Page Application (Original Version) 
+└── frontend SPA/ # Modern Single Page Application (Deployed Version)
+```
 
 ---
 
 ## 📂 Installation & Setup
 
-This project uses a monorepo structure with three main folders: `backend`, `frontend MPA`, and `frontend SPA`.
-
 ### **Backend Setup**
 
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/shahidx05/blogs-app](https://github.com/shahidx05/blogs-app)
+    git clone https://github.com/shahidx05/blogs-app
     cd blogs-app
     ```
 2.  **Navigate to the Backend Directory**
@@ -96,7 +127,7 @@ This project uses a monorepo structure with three main folders: `backend`, `fron
     npm install
     ```
 4.  **Set Up Environment Variables**
-    Create a `.env` file in the `/backend` folder and add the following:
+    Create a `.env` file in the `/backend` folder:
     ```env
     MONGO_URI=your_mongodb_connection_string
     PORT=3000
@@ -106,31 +137,39 @@ This project uses a monorepo structure with three main folders: `backend`, `fron
     ```bash
     npm start
     ```
-    The API will now be running on `http://localhost:3000`.
+    The API will run on `http://localhost:3000`.
 
 ---
 ### **Frontend Setup**
-
-You can run either the modern SPA or the original MPA.
 
 #### **1. Frontend (Single Page Application - Deployed Version)**
 
 1.  **Navigate to the SPA Directory**
     ```bash
-    cd ../frontend-SPA 
+    # From the root 'blogs-app' folder
+    cd frontend-spa 
     ```
 2.  **Run with a Live Server**
-    * The `js/api.js` file is already configured to automatically switch between the local and live backends.
+    * The `js/api.js` file automatically detects the environment.
     * In VS Code, right-click `index.html` and select "Open with Live Server".
 
 #### **2. Frontend (Multi-Page Application - Original Version)**
 
 1.  **Navigate to the MPA Directory**
     ```bash
-    cd ../"frontend MPA"
+    # From the root 'blogs-app' folder
+    cd frontend-mpa
     ```
 2.  **Run with a Live Server**
     * In VS Code, right-click `index.html` and select "Open with Live Server".
+
+---
+
+## 📄 License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This project is licensed under the MIT License — feel free to use and modify it for learning purposes.
 
 ---
 

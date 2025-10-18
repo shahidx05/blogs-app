@@ -63,11 +63,34 @@ const Home = {
 
         postContainer.addEventListener('click', async (e) => {
             const target = e.target;
-            e.preventDefault();
-
+            
             if (target.classList.contains('like-btn')) {
-                await api.likepost(target.dataset.id);
-                router();
+                e.preventDefault();
+
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert("You must be logged in to like a post.");
+                    window.location.hash = '#/login';
+                    return;
+                }
+
+                const postId = target.dataset.id;
+                const likeIcon = target;
+                const likeCountSpan = likeIcon.nextElementSibling;
+                const isLiked = likeIcon.classList.contains('active');
+                const currentLikes = parseInt(likeCountSpan.textContent);
+
+                likeIcon.classList.toggle('active');
+                likeCountSpan.textContent = `${isLiked ? currentLikes - 1 : currentLikes + 1} Likes`;
+                
+                try {
+                    await api.likepost(postId);
+                } catch (error) {
+                    console.error("Failed to like post:", error);
+                    likeIcon.classList.toggle('active');
+                    likeCountSpan.textContent = `${currentLikes} Likes`;
+                    alert("Something went wrong. Please try again.");
+                }
             }
 
             if (target.classList.contains('see-more-btn')) {

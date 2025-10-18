@@ -30,21 +30,24 @@ export const login = async (email, password) => {
   return res.json();
 };
 
-export const profile = async ()=>{
+export const profile = async () => {
   const token = localStorage.getItem("token");
-  const res = await fetch(`${BASE_URL}/users/profile`, { 
+  const res = await fetch(`${BASE_URL}/users/profile`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json"
     }
   });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch profile: ${res.status}`);
+  }
   return res.json();
 };
 
-export const post = async (id)=>{
+export const post = async (id) => {
   const token = localStorage.getItem("token");
-  const res = await fetch(`${BASE_URL}/posts/${id}`, { 
+  const res = await fetch(`${BASE_URL}/posts/${id}`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`,
@@ -54,14 +57,14 @@ export const post = async (id)=>{
   return res.json();
 }
 
-export const getAllposts = async()=>{
-const res = await fetch(`${BASE_URL}/posts/`);
+export const getAllposts = async () => {
+  const res = await fetch(`${BASE_URL}/posts/`);
   return res.json();
 }
 
-export const getmyposts = async ()=>{
+export const getmyposts = async () => {
   const token = localStorage.getItem("token");
-  const res = await fetch(`${BASE_URL}/posts/myposts`, { 
+  const res = await fetch(`${BASE_URL}/posts/myposts`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`,
@@ -71,7 +74,7 @@ export const getmyposts = async ()=>{
   return res.json();
 }
 
-export const createpost = async (content)=>{
+export const createpost = async (content) => {
   const token = localStorage.getItem("token");
   const res = await fetch(`${BASE_URL}/posts`, {
     method: 'POST',
@@ -79,13 +82,13 @@ export const createpost = async (content)=>{
       "Authorization": `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ content}),
+    body: JSON.stringify({ content }),
   });
 
   return res.json();
 }
 
-export const deletepost = async (id)=>{
+export const deletepost = async (id) => {
   const token = localStorage.getItem("token");
   const res = await fetch(`${BASE_URL}/posts/${id}`, {
     method: 'DELETE',
@@ -98,7 +101,7 @@ export const deletepost = async (id)=>{
   return res.json();
 }
 
-export const editpost = async(id, content)=>{
+export const editpost = async (id, content) => {
   const token = localStorage.getItem("token");
   const res = await fetch(`${BASE_URL}/posts/${id}`, {
     method: 'PUT',
@@ -106,13 +109,13 @@ export const editpost = async(id, content)=>{
       "Authorization": `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ content}),
+    body: JSON.stringify({ content }),
   });
 
   return res.json();
 }
 
-export const likepost = async(id)=>{
+export const likepost = async (id) => {
   const token = localStorage.getItem("token");
   const res = await fetch(`${BASE_URL}/posts/like/${id}`, {
     method: 'PUT',

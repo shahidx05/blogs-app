@@ -46,9 +46,9 @@ const Profile = {
         if (!localStorage.getItem('token')) {
             window.location.hash = '#/login';
             router();
-            return ''; 
+            return '';
         }
-        
+
         const user = await api.profile()
         const postsData = await api.getmyposts()
         const posts = postsData.posts || [];
@@ -69,9 +69,9 @@ const Profile = {
             <h2 class="your-posts-title">Your Posts</h2>
             <div class="postcontainer">
                 ${posts.length === 0
-                    ? `<p class="emptymsg">You haven't created any posts yet.</p>`
-                    : posts.map(post => createPostHTML(post, user)).join('')
-                }
+                ? `<p class="emptymsg">You haven't created any posts yet.</p>`
+                : posts.map(post => createPostHTML(post, user)).join('')
+            }
             </div>
         `;
     },
@@ -82,20 +82,64 @@ const Profile = {
 
         postContainer.addEventListener('click', async (e) => {
             const target = e.target;
-         
+
             if (target.matches('.like-btn, .delete, .see-more-btn, .see-less-btn')) {
                 e.preventDefault();
             }
 
             if (target.matches('.like-btn')) {
-                await api.likepost(target.dataset.id);
-                router();
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert("You must be logged in to like a post.");
+                    window.location.hash = '#/login';
+                    return;
+                }
+
+                const postId = target.dataset.id;
+                const likeIcon = target;
+                const likeCountSpan = likeIcon.nextElementSibling;
+                const isLiked = likeIcon.classList.contains('active');
+                const currentLikes = parseInt(likeCountSpan.textContent);
+
+                likeIcon.classList.toggle('active');
+                likeCountSpan.textContent = `${isLiked ? currentLikes - 1 : currentLikes + 1} Likes`;
+
+                try {
+                    await api.likepost(postId);
+                } catch (error) {
+                    console.error("Failed to like post:", error);
+                    likeIcon.classList.toggle('active');
+                    likeCountSpan.textContent = `${currentLikes} Likes`;
+                    alert("Something went wrong. Please try again.");
+                }
             }
 
             if (target.matches('.delete')) {
-                await api.deletepost(target.dataset.id);
-                router();
+                e.preventDefault();
+                const postId = target.dataset.id;
+                const postElement = target.closest('.post'); 
+
+                postElement.classList.add('fading-out');
+
+                try {
+                    await api.deletepost(postId);
+                    postElement.addEventListener('transitionend', () => {
+                        postElement.remove();
+
+                        const postCountSpan = document.querySelector('.post-count');
+                        if (postCountSpan) {
+                            const currentCount = parseInt(postCountSpan.textContent);
+                            postCountSpan.textContent = currentCount - 1;
+                        }
+                    });
+
+                } catch (error) {
+                        console.error("Failed to delete post:", error);
+                        alert("Could not delete the post. Please try again.");
+                        postElement.classList.remove('fading-out');
+                    }
             }
+
             if (target.matches('.see-more-btn')) {
                 const contentP = target.parentElement;
                 const fullContent = unescape(contentP.dataset.fullContent);

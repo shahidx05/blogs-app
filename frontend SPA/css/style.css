@@ -47,8 +47,8 @@ nav{
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    /* max-width: 900px; */
     max-width: 1100px;
+    max-width: 900px;
 }
 
 nav h1{
@@ -65,7 +65,7 @@ nav h1{
 
 .nav-links a{
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     /* font-size: 1rem; */
     font-weight: 500;
     color: var(--text-secondary);
@@ -237,6 +237,11 @@ color: var(--primary-color);
 .post-foot .btns .delete:hover { color: var(--danger-hover); }
 .post-foot .btns .edit:hover { color: #1e7e34; }
 
+.post.fading-out {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
 .profile-card{
     background: var(--surface-color);
     padding: 2rem;
@@ -290,7 +295,6 @@ color: var(--primary-color);
     align-items: center;
     gap: 0.5rem;
 }
-
 
 .create-btn{
     display: inline-block;
@@ -400,12 +404,11 @@ color: var(--primary-color);
     transform: translateY(-2px);
 }
 
-/* .btn:disabled, #Create:disabled, .edit-btn:disabled {
+.btn:disabled, #Create:disabled, .edit-btn:disabled {
     background-color: #6c757d;
     cursor: not-allowed;
     transform: none;
-} */
-
+}
 
 .Auth-form-card{
     max-width: 500px; 
@@ -424,7 +427,6 @@ color: var(--primary-color);
     margin-bottom: 1.2rem;
     /* margin-bottom: 2rem; */
 }
-
 
 .Auth-form-card label {
     display: block;
@@ -475,6 +477,17 @@ color: var(--primary-color);
     font-weight: 600;
 }
 
+.error-message {
+    color: var(--danger-color);
+    background-color: rgba(220, 53, 69, 0.1); 
+    border: 1px solid var(--danger-color);
+    padding: 0.8rem;
+    border-radius: var(--border-radius);
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+}
+
 .spinner-container {
     display: flex;
     justify-content: center;
@@ -498,7 +511,7 @@ color: var(--primary-color);
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     header {
         padding: 1rem;
     }
@@ -530,5 +543,3 @@ color: var(--primary-color);
         margin-top: 1rem;
     }
 }
-
-

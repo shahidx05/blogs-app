@@ -3,7 +3,7 @@ import { router } from '../router.js';
 
 const Login = {
     render: async () => {
-        return`
+        return `
        <div class="Auth-form-card">
             <h1>Login</h1>
             <form id="login-form">
@@ -16,6 +16,7 @@ const Login = {
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit" class="btn">Login</button>
+                <p class="error-message" id="error-message" style="display: none;"></p>
             </form>
             <div class="form-footer">
                 <p>Don't have an account? <a href="#/register">Register here</a></p>
@@ -27,32 +28,39 @@ const Login = {
         const form = document.querySelector('#login-form');
         if (!form) return;
 
-        
+
         form.addEventListener('submit', async (e) => {
-          e.preventDefault();
+            e.preventDefault();
 
-        const email = document.querySelector('#email').value.trim();
-        const password = document.querySelector('#password').value.trim();
-        const submitButton = form.querySelector('button')
+            const email = document.querySelector('#email').value.trim();
+            const password = document.querySelector('#password').value.trim();
+            const submitButton = form.querySelector('button')
+            const errorEl = document.getElementById('error-message');
 
-          submitButton.disabled = true;
-          submitButton.textContent = 'Logging Account...';
-        
-          const result = await api.login(email,password);
-        
-            if (result.token) {
-                localStorage.setItem('token', result.token);
-                localStorage.setItem('userId', result.user._id);
-                window.location.hash = '#/profile';
-                router();
-            }
-            else {
-                alert(result.message || 'Login failed. Please try again.');
+            errorEl.style.display = 'none';
+            submitButton.disabled = true;
+            submitButton.textContent = 'Logging Account...';
+
+            try {
+                const result = await api.login(email, password);
+                if (result.token) {
+                    localStorage.setItem('token', result.token);
+                    localStorage.setItem('userId', result.user._id);
+                    window.location.hash = '#/profile';
+                } else {
+                    throw new Error(result.message || 'Login failed. Please check your credentials.');
+                }
+            } catch (error) {
+                errorEl.textContent = error.message;
+                errorEl.style.display = 'block';
+                submitButton.disabled = false;
+                submitButton.textContent = 'Login';
+            }finally {
                 submitButton.disabled = false;
                 submitButton.textContent = 'Login';
             }
         });
-        
+
     }
 }
 
