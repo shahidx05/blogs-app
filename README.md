@@ -56,15 +56,16 @@ This repository showcases the evolution of a full-stack project. It starts with 
 ## 🛠️ Tech Stack
 
 ### Backend
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens)
 
 ### Frontend
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=ffffff)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=ffffff)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000)
+
 
 ---
 
@@ -94,7 +95,7 @@ This repository showcases the evolution of a full-stack project. It starts with 
 | Profile Page / Dashboard | All Posts (Home) |
 | :---: | :---: |
 | ![Profile Page Screenshot](frontend%20MPA/images/profile.png) | ![Home Page Screenshot](frontend%20MPA/images/home.png) |
-| **Login Page** | **Edit Post Page** |
+| **Login Page** | **Create/Edit Post Page** |
 | ![Login Page Screenshot](frontend%20MPA/images/login.png) | ![Edit/Create Post Screenshot](frontend%20MPA/images/create.png) |
 
 ---
@@ -103,8 +104,8 @@ This repository showcases the evolution of a full-stack project. It starts with 
 ```
 blogs-app/ 
 ├── backend/ # REST API built with Node.js and Express 
-├── frontend MPA/ # Classic Multi-Page Application (Original Version) 
-└── frontend SPA/ # Modern Single Page Application (Deployed Version)
+├── frontend-MPA/ # Classic Multi-Page Application (Original Version) 
+└── frontend-SPA/ # Modern Single Page Application (Deployed Version)
 ```
 
 ---
@@ -116,7 +117,6 @@ blogs-app/
 1.  **Clone the Repository**
     ```bash
     git clone https://github.com/shahidx05/blogs-app
-    cd blogs-app
     ```
 2.  **Navigate to the Backend Directory**
     ```bash
@@ -147,21 +147,21 @@ blogs-app/
 1.  **Navigate to the SPA Directory**
     ```bash
     # From the root 'blogs-app' folder
-    cd frontend-spa 
+    cd frontend-SPA
     ```
 2.  **Run with a Live Server**
-    * The `js/api.js` file automatically detects the environment.
-    * In VS Code, right-click `index.html` and select "Open with Live Server".
+    -   The `js/api.js` file automatically detects the environment.
+    -   In VS Code, right-click `index.html` and select "Open with Live Server".
 
 #### **2. Frontend (Multi-Page Application - Original Version)**
 
 1.  **Navigate to the MPA Directory**
     ```bash
     # From the root 'blogs-app' folder
-    cd frontend-mpa
+    cd frontend-MPA
     ```
 2.  **Run with a Live Server**
-    * In VS Code, right-click `index.html` and select "Open with Live Server".
+    -   In VS Code, right-click `index.html` and select "Open with Live Server".
 
 ---
 
@@ -177,6 +177,7 @@ This project is licensed under the MIT License — feel free to use and modify i
 
 **Shahid Khan**
 
-🚀 Learning in public | #WebDev #BuildInPublic
+Connect with me:
 
-🔗 [LinkedIn](https://www.linkedin.com/in/shahidx05) • [X (Twitter)](https://twitter.com/shahidx_05)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shahidx05)
+[![Twitter](https://img.shields.io/badge/X-@shahidx_05-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/shahidx_05)
