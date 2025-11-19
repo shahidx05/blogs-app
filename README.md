@@ -94,9 +94,9 @@ This repository showcases the evolution of a full-stack project. It starts with 
 
 | Profile Page / Dashboard | All Posts (Home) |
 | :---: | :---: |
-| ![Profile Page Screenshot](frontend%20MPA/images/profile.png) | ![Home Page Screenshot](frontend%20MPA/images/home.png) |
+| ![Profile Page Screenshot](frontend-MPA/images/profile.png) | ![Home Page Screenshot](frontend-MPA/images/home.png) |
 | **Login Page** | **Create/Edit Post Page** |
-| ![Login Page Screenshot](frontend%20MPA/images/login.png) | ![Edit/Create Post Screenshot](frontend%20MPA/images/create.png) |
+| ![Login Page Screenshot](frontend-MPA/images/login.png) | ![Edit/Create Post Screenshot](frontend-MPA/images/create.png) |
 
 ---
 
