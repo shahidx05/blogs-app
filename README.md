@@ -13,7 +13,7 @@
 **Click the image below to experience the live Single Page Application:**
 
 <a href="https://blogs-app-shahidx05.vercel.app/" target="_blank">
-  <img src="frontend%20MPA/images/home.png" alt="Project Home Page Preview" width="100%">
+  <img src="frontend-MPA/images/home.png" alt="Project Home Page Preview" width="100%">
 </a>
 
 **Frontend SPA Live Link:**
